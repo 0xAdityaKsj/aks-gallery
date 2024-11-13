@@ -1,5 +1,4 @@
 import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
 import { sql } from "@vercel/postgres";
 import * as schema from "./schema";
 
@@ -8,8 +7,4 @@ import * as schema from "./schema";
  * update.
  */
 
-const queryClient = process.env.VERCEL
-    ? sql
-    : postgres(process.env.POSTGRES_URL!);
-
-export const db = drizzle(queryClient, { schema }); 
+export const db = drizzle(sql, { schema }); 
