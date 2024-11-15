@@ -7,9 +7,10 @@ import {
     timestamp,
     uniqueIndex,
 } from 'drizzle-orm/pg-core';
+import * as schema from "./schema";
 
 // Use this object to send drizzle queries to your DB
-export const db = drizzle(sql);
+export const db = drizzle(sql, { schema });
 // Create a pgTable that maps to a table in your DB
 export const ExampleTable = pgTable(
     'users',
