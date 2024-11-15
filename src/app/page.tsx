@@ -1,4 +1,5 @@
 import { db } from "~/server/db"
+import { posts as postsTable } from "~/server/db/schema"
 
 export const dynamic = "force-dynamic";
 
@@ -16,11 +17,15 @@ const mockImages = mockImageUrls.map((url, index) => (
 
 export default async function HomePage() {
 
+  const posts = await db.select().from(postsTable);
 
 
   return (
 
     <main className="flex flex-wrap gap-4">
+      {
+        posts.map((post, index) => <div key={index}>{post.name}</div>)
+      }
       {
         [...mockImages, ...mockImages, ...mockImages].map((image, index) => (
           <img key={index} src={image.url} alt="" className="w-48 h-48 object-cover" />
