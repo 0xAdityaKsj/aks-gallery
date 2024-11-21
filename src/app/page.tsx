@@ -1,11 +1,8 @@
 import { db } from "~/server/db"
-
+import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
 export const dynamic = "force-dynamic";
 
-
-
-export default async function HomePage() {
-
+export async function Images() {
   const images = await db.query.imagess.findMany();
 
 
@@ -22,4 +19,20 @@ export default async function HomePage() {
       }
     </main>
   );
+}
+
+
+
+export default async function HomePage() {
+
+  return (
+    <main>
+      <SignedIn>
+        <Images />
+      </SignedIn>
+      <SignedOut>
+        <div className="flex justify-center items-center h-screen">Please sign in to view the images</div>
+      </SignedOut>
+    </main>
+  )
 }
