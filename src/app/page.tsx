@@ -1,11 +1,10 @@
-import { db } from "~/server/db"
 import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
+import { getImages } from '~/server/queries'
 export const dynamic = "force-dynamic";
 
 export async function Images() {
-  const images = await db.query.imagess.findMany();
 
-
+  const images = await getImages();
   return (
 
     <main className="flex flex-wrap gap-4">
