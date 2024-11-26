@@ -2,7 +2,7 @@ import "~/styles/globals.css";
 import "@uploadthing/react/styles.css";
 
 import { GeistSans } from "geist/font/sans";
-import { type Metadata } from "next";
+import type { Metadata } from "next/types";
 import { ClerkProvider } from '@clerk/nextjs'
 import { TopNav } from "./_components/topnav";
 
@@ -15,13 +15,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  modal,
+}: Readonly<{
+  children: React.ReactNode,
+  modal: React.ReactNode,
+}>) {
   return (
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
         <body className="flex flex-col gap-4">
           <TopNav />
           {children}
+          {modal}
         </body>
       </html>
     </ClerkProvider>

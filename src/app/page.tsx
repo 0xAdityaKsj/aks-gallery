@@ -1,17 +1,28 @@
 import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
 import { getImages } from '~/server/queries'
 export const dynamic = "force-dynamic";
+import Link from 'next/link';
+
+interface Image {
+  id: number;
+  name: string;
+  url: string;
+  userId: string;
+  createdAt: Date;
+  updatedAt: Date | null;
+}
 
 export async function Images() {
 
   const images = await getImages();
   return (
-
     <main className="flex flex-wrap gap-4">
       {
-        images.map((image, index) => (
+        images.map((image: Image, index: number) => (
           <div key={index} className="flex flex-col items-center">
-            <img src={image.url} alt={image.name} className="max-w-xs" />
+            <Link href={`/img/${image.id}`}>
+              <img src={image.url} alt={image.name} className="max-w-xs" />
+            </Link>
             <p className="mt-2 text-sm">{image.name}</p>
           </div>
         ))
