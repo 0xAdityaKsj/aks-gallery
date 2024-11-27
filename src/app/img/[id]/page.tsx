@@ -8,13 +8,6 @@ export default async function PhotoModal({
 ) {
     const image = await getImage(parseInt(photoId));
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <img
-                    src={image?.url}
-                    alt={image?.name}
-                />
-            </div>
-        </div>
-    )
+        <img src={image?.url} />
+    );
 }
