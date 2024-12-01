@@ -18,7 +18,7 @@ export async function Images() {
   return (
     <main className="flex flex-wrap gap-4">
       {
-        images.map((image: Image, index: number) => (
+        [...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images, ...images].map((image: Image, index: number) => (
           <div key={index} className="flex flex-col items-center">
             <Link href={`/img/${image.id}`}>
               <img src={image.url} alt={image.name} className="max-w-xs" />
