@@ -15,7 +15,7 @@ interface Image {
 export async function Images() {
   const images = await getImages();
   return (
-    <main className="flex flex-wrap gap-4">
+    <main className="flex flex-wrap p-4">
       {[
         ...images,
         ...images,
